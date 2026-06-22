@@ -184,10 +184,19 @@ export const Projects = () => {
             >
               <div
                 onClick={() => setSelectedProject(project)}
-                className="h-full glass-card p-6 cursor-pointer transition-all duration-500 hover:border-[#81b64c]/50 hover:shadow-[0_0_30px_rgba(129,182,76,0.15)] hover:-translate-y-2"
+                className="relative h-full glass-card p-6 cursor-pointer transition-all duration-500 hover:border-[#81b64c]/50 hover:shadow-[0_0_30px_rgba(129,182,76,0.15)] hover:-translate-y-2"
               >
+                {project.name !== 'API Gateway Service' && (
+                  <Badge
+                    variant="secondary"
+                    className="absolute right-4 top-4 bg-[#b58863]/20 text-[#f1d6bc] border border-[#b58863]/40 text-[10px] uppercase tracking-wide"
+                  >
+                    Coming soon
+                  </Badge>
+                )}
+
                 {/* Piece Icon */}
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-4 pr-28">
                   <div
                     className={`w-16 h-16 rounded-xl bg-gradient-to-br ${pieceColors[project.piece]} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
                   >

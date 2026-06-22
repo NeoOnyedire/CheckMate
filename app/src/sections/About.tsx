@@ -3,28 +3,28 @@ import { GraduationCap, Target, Lightbulb, Code2, BookOpen } from 'lucide-react'
 
 const milestones = [
   {
-    year: '2022',
+    year: '2023',
     title: 'Started Coding Journey',
     description: 'Discovered my passion for programming and began learning Python and JavaScript.',
     icon: Code2,
   },
   {
-    year: '2023',
-    title: 'Joined WeThinkCode_',
-    description: 'Started my formal software engineering education, focusing on problem-solving and clean code.',
-    icon: GraduationCap,
-  },
-  {
     year: '2024',
-    title: 'Full-Stack Development',
-    description: 'Expanded into React, Node.js, and database design, building complete applications.',
-    icon: Target,
+    title: 'WeThinkCode_ Bootcamp',
+    description: 'Joined the WeThinkCode_ bootcamp and sharpened my problem-solving fundamentals.',
+    icon: GraduationCap,
   },
   {
-    year: '2025',
-    title: 'Became a WeThinkCode_ Alumnus',
-    description: 'Completed the program and continued building software with a strong foundation in peer learning and practical engineering.',
+    year: '2025/2026',
+    title: 'WeThinkCode_ Full-Time Program',
+    description: 'Moved into the full-time software engineering program, building deeper practical engineering skills.',
     icon: GraduationCap,
+  },
+  {
+    year: '2026',
+    title: 'Full-Stack Development & Distributed Systems',
+    description: 'Expanded into full-stack development and distributed systems, building complete applications with scalable architecture in mind.',
+    icon: Target,
   },
 ];
 
