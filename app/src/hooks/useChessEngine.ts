@@ -112,6 +112,74 @@ const getBestMove = (game: Chess, difficulty: Difficulty): Move | null => {
   };
 };
 
+const getStockfishWorkerUrl = () => {
+  const baseUrl = new URL(import.meta.env.BASE_URL, window.location.href);
+  const scriptUrl = new URL('stockfish/stockfish.js', baseUrl);
+  const wasmUrl = new URL('stockfish/stockfish.wasm', baseUrl);
+  scriptUrl.hash = wasmUrl.toString();
+  return scriptUrl;
+};
+
+const uciToMove = (uciMove: string): Move | null => {
+  if (!/^[a-h][1-8][a-h][1-8][qrbn]?$/.test(uciMove)) return null;
+
+  return {
+    from: uciMove.slice(0, 2),
+    to: uciMove.slice(2, 4),
+    promotion: uciMove[4],
+  };
+};
+
+const getStockfishMove = (game: Chess): Promise<Move | null> => {
+  return new Promise((resolve) => {
+    if (typeof Worker === 'undefined') {
+      resolve(null);
+      return;
+    }
+
+    const worker = new Worker(getStockfishWorkerUrl());
+    let isResolved = false;
+
+    const cleanup = (move: Move | null) => {
+      if (isResolved) return;
+      isResolved = true;
+      worker.terminate();
+      resolve(move);
+    };
+
+    const timeoutId = window.setTimeout(() => cleanup(null), 6000);
+
+    worker.onmessage = (event: MessageEvent<string>) => {
+      const line = event.data;
+
+      if (line === 'uciok') {
+        worker.postMessage('setoption name Skill Level value 20');
+        worker.postMessage('setoption name UCI_LimitStrength value false');
+        worker.postMessage('isready');
+        return;
+      }
+
+      if (line === 'readyok') {
+        worker.postMessage(`position fen ${game.fen()}`);
+        worker.postMessage('go movetime 1200');
+        return;
+      }
+
+      if (line.startsWith('bestmove')) {
+        window.clearTimeout(timeoutId);
+        cleanup(uciToMove(line.split(' ')[1]));
+      }
+    };
+
+    worker.onerror = () => {
+      window.clearTimeout(timeoutId);
+      cleanup(null);
+    };
+
+    worker.postMessage('uci');
+  });
+};
+
 export const useChessEngine = (difficulty: Difficulty = 'medium') => {
   const gameRef = useRef(new Chess());
   const [fen, setFen] = useState(gameRef.current.fen());
@@ -159,7 +227,9 @@ export const useChessEngine = (difficulty: Difficulty = 'medium') => {
     // Add a small delay to make it feel more natural
     await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 500));
     
-    const bestMove = getBestMove(gameRef.current, difficulty);
+    const bestMove = difficulty === 'hard'
+      ? await getStockfishMove(gameRef.current) ?? getBestMove(gameRef.current, difficulty)
+      : getBestMove(gameRef.current, difficulty);
     
     setIsThinking(false);
     
