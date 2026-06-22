@@ -184,19 +184,10 @@ export const Projects = () => {
             >
               <div
                 onClick={() => setSelectedProject(project)}
-                className="relative h-full glass-card p-6 cursor-pointer transition-all duration-500 hover:border-[#81b64c]/50 hover:shadow-[0_0_30px_rgba(129,182,76,0.15)] hover:-translate-y-2"
+                className="h-full glass-card p-6 cursor-pointer transition-all duration-500 hover:border-[#81b64c]/50 hover:shadow-[0_0_30px_rgba(129,182,76,0.15)] hover:-translate-y-2"
               >
-                {project.name !== 'API Gateway Service' && (
-                  <Badge
-                    variant="secondary"
-                    className="absolute right-4 top-4 bg-[#b58863]/20 text-[#f1d6bc] border border-[#b58863]/40 text-[10px] uppercase tracking-wide"
-                  >
-                    Coming soon
-                  </Badge>
-                )}
-
                 {/* Piece Icon */}
-                <div className="flex items-start justify-between mb-4 pr-28">
+                <div className="flex items-start justify-between gap-4 mb-4">
                   <div
                     className={`w-16 h-16 rounded-xl bg-gradient-to-br ${pieceColors[project.piece]} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
                   >
@@ -204,7 +195,15 @@ export const Projects = () => {
                       {pieceIcons[project.piece]}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex flex-col items-end gap-2">
+                    {project.name !== 'API Gateway Service' && (
+                      <Badge
+                        variant="secondary"
+                        className="bg-[#b58863]/20 text-[#f1d6bc] border border-[#b58863]/40 text-[10px] uppercase tracking-wide"
+                      >
+                        Coming soon
+                      </Badge>
+                    )}
                     <Badge
                       variant="secondary"
                       className="bg-white/5 text-gray-400 border border-white/10 capitalize"
