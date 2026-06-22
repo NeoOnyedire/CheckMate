@@ -24,8 +24,8 @@ const contactInfo = [
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/Neo-Onyedire',
-    href: 'https://www.linkedin.com/in/Neo-Onyedire',
+    value: 'linkedin.com/in/neo-onyedire-107b272a9',
+    href: 'https://www.linkedin.com/in/neo-onyedire-107b272a9/',
     color: '#6b8cae',
   },
 ];

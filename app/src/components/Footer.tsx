@@ -6,7 +6,7 @@ export const Footer = () => {
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/NeoOnyedire', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/Neo-Onyedire', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/neo-onyedire-107b272a9/', label: 'LinkedIn' },
     { icon: Mail, href: 'mailto:neomvubu1@gmail.com', label: 'Email' },
   ];
 

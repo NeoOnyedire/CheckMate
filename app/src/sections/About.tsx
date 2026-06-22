@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Target, Lightbulb, Heart, Code2, BookOpen } from 'lucide-react';
+import { GraduationCap, Target, Lightbulb, Code2, BookOpen } from 'lucide-react';
 
 const milestones = [
   {
@@ -22,9 +22,9 @@ const milestones = [
   },
   {
     year: '2025',
-    title: 'Open Source & Collaboration',
-    description: 'Contributing to open source projects and collaborating with other developers.',
-    icon: Heart,
+    title: 'Became a WeThinkCode_ Alumnus',
+    description: 'Completed the program and continued building software with a strong foundation in peer learning and practical engineering.',
+    icon: GraduationCap,
   },
 ];
 
@@ -89,7 +89,7 @@ export const About = () => {
               <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>
                   I'm <span className="text-[#81b64c] font-semibold">Neo Onyedire</span>, 
-                  a software engineering student at WeThinkCode_ with a passion for building 
+                  a WeThinkCode_ alumnus with a passion for building 
                   elegant solutions to complex problems.
                 </p>
                 <p>

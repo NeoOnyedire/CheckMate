@@ -110,7 +110,7 @@ export const Hero = ({ onScrollToSection }: HeroProps) => {
         <motion.div variants={itemVariants} className="mb-6">
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#81b64c]/10 border border-[#81b64c]/30 rounded-full text-[#81b64c] text-sm font-medium">
             <span className="w-2 h-2 bg-[#81b64c] rounded-full animate-pulse" />
-            Software Engineering Student @ WeThinkCode_
+            WeThinkCode_ Alumni
           </span>
         </motion.div>
 
@@ -177,7 +177,7 @@ export const Hero = ({ onScrollToSection }: HeroProps) => {
             <Github className="w-5 h-5" />
           </a>
           <a
-            href="https://www.linkedin.com/in/Neo-Onyedire"
+            href="https://www.linkedin.com/in/neo-onyedire-107b272a9/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-[#81b64c] hover:border-[#81b64c]/50 hover:bg-[#81b64c]/10 transition-all duration-300"
