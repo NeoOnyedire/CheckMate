@@ -62,11 +62,11 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative overflow-hidden">
+    <section id="contact" className="py-24 px-4 relative overflow-x-hidden w-full">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-chess-pattern opacity-20 pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10 w-full min-w-0">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,16 +88,16 @@ export const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12 w-full min-w-0">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="space-y-6 w-full min-w-0"
           >
-            <div className="glass-card p-6 md:p-8">
+            <div className="glass-card p-6 md:p-8 w-full min-w-0 overflow-hidden">
               <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
 
               <div className="space-y-4">
@@ -158,13 +158,13 @@ export const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass-card p-6"
+              className="glass-card p-6 w-full min-w-0 overflow-hidden"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-3 h-3 bg-[#81b64c] rounded-full animate-pulse flex-shrink-0" />
                 <span className="text-[#81b64c] font-semibold">Available for opportunities</span>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm break-words">
                 I&apos;m currently looking for internships and collaboration opportunities.
                 If you have an interesting project, let&apos;s talk!
               </p>
@@ -190,8 +190,9 @@ export const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+          className="w-full min-w-0"
           >
-            <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8">
+            <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8 w-full min-w-0 overflow-hidden">
               <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
 
               <div className="space-y-6">
