@@ -53,17 +53,16 @@ export const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
+
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast.success('Message sent successfully! I\'ll get back to you soon.');
+
+    toast.success("Message sent successfully! I'll get back to you soon.");
     setFormData({ name: '', email: '', message: '' });
     setIsSubmitting(false);
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative">
+    <section id="contact" className="py-24 px-4 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-chess-pattern opacity-20 pointer-events-none" />
 
@@ -98,9 +97,9 @@ export const Contact = () => {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <div className="glass-card p-8">
+            <div className="glass-card p-6 md:p-8">
               <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
-              
+
               <div className="space-y-4">
                 {contactInfo.map((item, index) => {
                   const Icon = item.icon;
@@ -114,26 +113,32 @@ export const Contact = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-center gap-4 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group"
+                      className="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors group w-full min-w-0"
                     >
+                      {/* Icon */}
                       <div
-                        className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0"
+                        className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
                         style={{ backgroundColor: `${item.color}20` }}
                       >
-                        <Icon className="w-5 h-5" style={{ color: item.color }} />
+                        <Icon className="w-4 h-4" style={{ color: item.color }} />
                       </div>
+
+                      {/* Text — flex-1 + min-w-0 so it can shrink */}
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-400">{item.label}</p>
-                        <p className="text-white font-medium truncate group-hover:text-[#81b64c] transition-colors">
+                        <p className="text-xs text-gray-400">{item.label}</p>
+                        <p className="text-sm text-white font-medium truncate group-hover:text-[#81b64c] transition-colors">
                           {item.value}
                         </p>
                       </div>
+
+                      {/* Copy button — flex-shrink-0 so it never disappears */}
                       <button
                         onClick={(e) => {
                           e.preventDefault();
                           handleCopy(item.value, item.label);
                         }}
-                        className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                        className="p-2 hover:bg-white/10 rounded-lg transition-colors flex-shrink-0"
+                        aria-label={`Copy ${item.label}`}
                       >
                         {copiedField === item.label ? (
                           <Check className="w-4 h-4 text-[#81b64c]" />
@@ -156,7 +161,7 @@ export const Contact = () => {
               className="glass-card p-6"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-[#81b64c] rounded-full animate-pulse" />
+                <div className="w-3 h-3 bg-[#81b64c] rounded-full animate-pulse flex-shrink-0" />
                 <span className="text-[#81b64c] font-semibold">Available for opportunities</span>
               </div>
               <p className="text-gray-400 text-sm">
@@ -165,13 +170,13 @@ export const Contact = () => {
               </p>
             </motion.div>
 
-            {/* Chess Piece Decoration */}
+            {/* Chess Piece Decoration — smaller on mobile to prevent overflow */}
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center justify-center gap-8 text-6xl opacity-20"
+              className="flex items-center justify-center gap-6 text-4xl md:text-6xl opacity-20"
             >
               <span className="animate-float">♔</span>
               <span className="animate-float" style={{ animationDelay: '0.5s' }}>♕</span>
@@ -186,9 +191,9 @@ export const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form onSubmit={handleSubmit} className="glass-card p-8">
+            <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8">
               <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
-              
+
               <div className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">
@@ -201,7 +206,7 @@ export const Contact = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#81b64c] focus:ring-[#81b64c]/20"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#81b64c] focus:ring-[#81b64c]/20 w-full"
                   />
                 </div>
 
@@ -216,7 +221,7 @@ export const Contact = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#81b64c] focus:ring-[#81b64c]/20"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#81b64c] focus:ring-[#81b64c]/20 w-full"
                   />
                 </div>
 
@@ -231,7 +236,7 @@ export const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                     rows={5}
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#81b64c] focus:ring-[#81b64c]/20 resize-none"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#81b64c] focus:ring-[#81b64c]/20 resize-none w-full"
                   />
                 </div>
 
