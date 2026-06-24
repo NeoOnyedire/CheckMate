@@ -231,19 +231,21 @@ const getStockfishMove = (game: Chess): Promise<Move | null> => {
       resolve(move);
     };
 
-    const timeoutId = window.setTimeout(() => cleanup(null), 6000);
+    const timeoutId = window.setTimeout(() => cleanup(null), 3000);
 
     worker.onmessage = (event: MessageEvent<string>) => {
       const line = event.data;
       if (line === 'uciok') {
         worker.postMessage('setoption name Skill Level value 20');
         worker.postMessage('setoption name UCI_LimitStrength value false');
+        worker.postMessage('setoption name Threads value 1');
+        worker.postMessage('setoption name Hash value 16');
         worker.postMessage('isready');
         return;
       }
       if (line === 'readyok') {
         worker.postMessage(`position fen ${game.fen()}`);
-        worker.postMessage('go movetime 1200');
+        worker.postMessage('go movetime 400 depth 12');
         return;
       }
       if (line.startsWith('bestmove')) {
@@ -297,7 +299,8 @@ export const useChessEngine = (difficulty: Difficulty = 'medium') => {
     if (gameRef.current.turn() !== 'b' || isGameOver) return false;
 
     setIsThinking(true);
-    await new Promise(resolve => setTimeout(resolve, 300 + Math.random() * 400));
+    const delay = difficulty === 'hard' ? 0 : 300 + Math.random() * 400;
+    await new Promise(resolve => setTimeout(resolve, delay));
 
     const bestMove = difficulty === 'hard'
       ? await getStockfishMove(gameRef.current) ?? getBestMove(gameRef.current, difficulty)
