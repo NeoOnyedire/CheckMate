@@ -18,10 +18,11 @@ const projects: Project[] = [
   },
   {
     id: '2',
-    name: 'Task Management System',
-    description: 'Collaborative project management tool with real-time updates, drag-and-drop task boards, and team collaboration features. Includes sprint planning, burndown charts, and time tracking.',
-    techStack: ['TypeScript', 'Next.js', 'PostgreSQL', 'Socket.io', 'Tailwind'],
-    githubUrl: 'https://github.com/NeoOnyedire',
+    name: 'DevFlow Academy',
+    description: 'A gamified platform for learning Git & GitHub — curated video curriculum with progress tracking, an AI chat assistant (Gitter) for on-demand help, interactive scenario-based practice, weekly coding challenges with a leaderboard, GitHub profile integration for portfolio proof, and a skills dashboard.',
+    techStack: ['React', 'TypeScript', 'React Router', 'GSAP', 'Tailwind CSS', 'Claude API'],
+    githubUrl: 'https://github.com/NeoOnyedire/DevFlow-Academy',
+    liveUrl: 'https://dev-flow-academy.vercel.app/',
     piece: 'rook',
     size: 'large',
   },
@@ -93,6 +94,9 @@ const cardSizes: { [key: string]: string } = {
   medium: 'col-span-1 md:col-span-1 row-span-1',
   large: 'col-span-1 md:col-span-2 row-span-1',
 };
+
+// Projects that are live and don't need the "Coming soon" badge
+const LIVE_PROJECTS = ['API Gateway Service', 'DevFlow Academy'];
 
 export const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -196,7 +200,7 @@ export const Projects = () => {
                     </span>
                   </div>
                   <div className="flex flex-col items-end gap-2">
-                    {project.name !== 'API Gateway Service' && (
+                    {!LIVE_PROJECTS.includes(project.name) && (
                       <Badge
                         variant="secondary"
                         className="bg-[#b58863]/20 text-[#f1d6bc] border border-[#b58863]/40 text-[10px] uppercase tracking-wide"
